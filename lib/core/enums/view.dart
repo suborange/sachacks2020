@@ -1,0 +1,1 @@
+enum View { Home, Settings }
