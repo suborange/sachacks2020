@@ -6,4 +6,5 @@ class ViewRoutes {
   // menu bar
   static const home = 'home';
   static const settings = 'settings';
+  static const enterForm = 'enterForm';
 }

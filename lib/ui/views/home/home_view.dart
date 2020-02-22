@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lean_provider/core/enums/view_state.dart';
 import 'package:lean_provider/core/ui_models/views/home/home_model.dart';
 import 'package:lean_provider/ui/views/base_view.dart';
+import 'package:lean_provider/ui/widgets/column_builder.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key key}) : super(key: key);
@@ -13,6 +14,7 @@ class HomeView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
+          onPressed: model.hello,
         ),
         body: Center(
           child: (model.state == ViewState.Busy)
@@ -50,27 +52,12 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                     Text("Recent"),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
-                    ListTile(
-                      leading: Text("Entry 1"),
-                    ),
+                    ColumnBuilder(
+                      itemCount: model.entries.length,
+                      itemBuilder: (context, index) {
+                        return Text(model.entries[index].text);
+                      },
+                    )
                   ],
                 ),
         ),

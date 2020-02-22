@@ -1,24 +1,29 @@
+import 'package:flutter/material.dart';
 import 'package:lean_provider/core/model/entry.dart';
 import 'package:lean_provider/core/services/local_storage_service.dart';
 import 'package:lean_provider/core/ui_models/base_model.dart';
 
 import '../../../../locator.dart';
-import '../../../constants/view_routes.dart';
 import '../../../services/navigation_service.dart';
 
-class HomeModel extends BaseModel {
+class EnterFormModel extends BaseModel {
   final _nav = locator<NavigationService>();
   final _local = locator<LocalStorageService>();
 
-  List<Entry> entries;
+  final controller = TextEditingController();
 
-  void init() async {
-    entries = _local.getEntries();
-    notifyListeners();
+  void init() async {}
+
+  void cancel() {
+    _nav.pop();
   }
 
-  void hello() {
-    _nav.pushNamed(ViewRoutes.enterForm);
+  void done() {
+    String text = controller.text;
+    DateTime date = DateTime.now();
+    double positivity = 0;
+    _local.addEntry(Entry(text: text, date: date, positivity: positivity));
+    _nav.pop();
   }
 
   @override

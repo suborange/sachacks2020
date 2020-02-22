@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lean_provider/core/constants/view_routes.dart';
 import 'package:lean_provider/core/enums/view.dart';
+import 'package:lean_provider/ui/views/enter_form/enter_form_view.dart';
 import 'package:lean_provider/ui/views/home/home_view.dart';
 import 'package:lean_provider/ui/views/tab_container.dart';
 
@@ -16,6 +17,9 @@ class Router {
     switch (settings.name) {
       case ViewRoutes.home:
         return HomeView();
+
+      case ViewRoutes.enterForm:
+        return EnterFormView();
 
       case ViewRoutes.tabContainer:
         final view = settings.arguments as View;
