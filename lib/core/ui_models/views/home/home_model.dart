@@ -14,6 +14,9 @@ class HomeModel extends BaseModel {
 
   void init() async {
     entries = _local.getEntries();
+    _local.savedEntries$.listen((list) {
+      entries = list;
+    });
     notifyListeners();
   }
 

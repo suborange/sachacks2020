@@ -26,7 +26,7 @@ class HomeView extends StatelessWidget {
                         height: 150,
                         child: Center(
                           child: Text(
-                            "125 entries",
+                            "${model.entries.length} entries",
                             style: TextStyle(fontSize: 30),
                           ),
                         ),

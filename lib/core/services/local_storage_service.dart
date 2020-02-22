@@ -1,10 +1,14 @@
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lean_provider/core/model/entry.dart';
+import 'package:rxdart/subjects.dart';
 
 class LocalStorageService {
   Box entries;
   Box userData;
+
+  final _entries = BehaviorSubject<List<Entry>>();
+  Stream<List<Entry>> get savedEntries$ => _entries.stream;
 
   Future<void> init() async {
     await Hive.initFlutter();
@@ -29,6 +33,7 @@ class LocalStorageService {
     for (var item in entries.get('list')) {
       list.add(item);
     }
+    _entries.add(list);
     return list;
   }
 
