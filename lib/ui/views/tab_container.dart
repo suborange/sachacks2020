@@ -29,7 +29,7 @@ class TabContainer extends StatelessWidget {
       onModelReady: (model) => model.init(view),
       builder: (context, model, child) => Scaffold(
         appBar: AppBar(
-          title: Text("The App"),
+          title: Text("Pozzy"),
         ),
         body: IndexedStack(
           index: model.currentTab,
