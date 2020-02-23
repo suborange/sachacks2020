@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lean_provider/core/enums/view_state.dart';
 import 'package:lean_provider/core/model/entry.dart';
+import 'package:lean_provider/core/services/analyze_service.dart';
 import 'package:lean_provider/core/services/api_service.dart';
 import 'package:lean_provider/core/services/local_storage_service.dart';
 import 'package:lean_provider/core/ui_models/base_model.dart';
@@ -11,7 +12,7 @@ import '../../../services/navigation_service.dart';
 class EnterFormModel extends BaseModel {
   final _nav = locator<NavigationService>();
   final _local = locator<LocalStorageService>();
-  final _api = locator<ApiService>();
+  final _analyze = locator<AnalyzeService>();
 
   final controller = TextEditingController();
 
@@ -26,11 +27,10 @@ class EnterFormModel extends BaseModel {
 
     // TODO: ANALYZE THE TEXT AND ASSIGN IT TO THE POSITIVITY
     setState(ViewState.Busy);
-    await _api.analyze(text);
+    double positivity = await _analyze.getPositivity(text) ?? 0;
     setState(ViewState.Idle);
 
     DateTime date = DateTime.now();
-    double positivity = 0;
     _local.addEntry(Entry(text: text, date: date, positivity: positivity));
     _nav.pop();
   }
@@ -38,5 +38,6 @@ class EnterFormModel extends BaseModel {
   @override
   void dispose() {
     super.dispose();
+    controller.dispose();
   }
 }

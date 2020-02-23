@@ -18,7 +18,6 @@ class HttpService {
   Future<dynamic> getHttp(String route, Map<String, dynamic> params) async {
     Response response;
     params["version"] = "2017-09-21";
-    print(params);
     try {
       response = await _dio.get(
         route,
@@ -29,7 +28,6 @@ class HttpService {
       print(e);
     }
     final data = decodeResponseBodyToJson(response.data);
-    print(data);
     return data;
   }
 

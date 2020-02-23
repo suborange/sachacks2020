@@ -3,6 +3,7 @@ import 'package:lean_provider/core/enums/view_state.dart';
 import 'package:lean_provider/core/ui_models/views/home/home_model.dart';
 import 'package:lean_provider/ui/views/base_view.dart';
 import 'package:lean_provider/ui/widgets/column_builder.dart';
+import 'package:lean_provider/ui/widgets/custom_card.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key key}) : super(key: key);
@@ -21,13 +22,16 @@ class HomeView extends StatelessWidget {
               ? Container()
               : ListView(
                   children: <Widget>[
-                    Card(
-                      child: Container(
-                        height: 150,
-                        child: Center(
-                          child: Text(
-                            "${model.entries.length} entries",
-                            style: TextStyle(fontSize: 30),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomCard(
+                        child: Container(
+                          height: 150,
+                          child: Center(
+                            child: Text(
+                              "${model.entries.length} entries",
+                              style: TextStyle(fontSize: 30),
+                            ),
                           ),
                         ),
                       ),
@@ -35,14 +39,14 @@ class HomeView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        Card(
+                        CustomCard(
                           child: Container(
                             height: 100,
                             width: MediaQuery.of(context).size.width / 2.5,
                             child: Center(child: Text("50 Pos")),
                           ),
                         ),
-                        Card(
+                        CustomCard(
                           child: Container(
                             height: 100,
                             width: MediaQuery.of(context).size.width / 2.5,

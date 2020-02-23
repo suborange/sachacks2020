@@ -5,16 +5,17 @@ import '../../locator.dart';
 class ApiService {
   final httpService = locator<HttpService>();
 
-  Future<void> analyze(String text) async {
+  Future<Map<dynamic, dynamic>> analyze(String text) async {
     Map<String, dynamic> data = {
       "text": text,
     };
-
+    Map<dynamic, dynamic> result;
     try {
-      var response = await httpService.getHttp("/v3/tone", data);
-      print(response);
+      result = await httpService.getHttp("/v3/tone", data);
     } catch (e) {
       print(e);
     }
+
+    return result;
   }
 }
