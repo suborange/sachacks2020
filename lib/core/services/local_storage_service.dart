@@ -72,6 +72,10 @@ class LocalStorageService {
     } else {
       _thirty.add(data);
     }
+
+    while (data.length < numberOfEntries) {
+      data.insert(0, 0);
+    }
     return data;
   }
 

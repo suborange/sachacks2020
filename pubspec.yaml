@@ -12,7 +12,9 @@ dependencies:
 
   syncfusion_flutter_gauges: ^17.4.50-beta
   # syncfusion_flutter_gauges: ^1.0.0-beta
-  flutter_sparkline: ^0.1.0
+  flutter_sparkline:
+    git:
+      url: git://github.com/ejprok/flutter_sparkline
 
   # Provider
   get_it: ^3.0.3

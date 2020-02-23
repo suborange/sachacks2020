@@ -219,9 +219,11 @@ packages:
   flutter_sparkline:
     dependency: "direct main"
     description:
-      name: flutter_sparkline
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "98ecafb6b329694c6157b3059c0ec1fb28aedbbd"
+      url: "git://github.com/ejprok/flutter_sparkline"
+    source: git
     version: "0.1.0"
   flutter_test:
     dependency: "direct dev"
