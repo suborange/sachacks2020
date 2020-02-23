@@ -12,17 +12,35 @@ class HomeModel extends BaseModel {
 
   List<Entry> recentEntries;
   List<Entry> allEntries;
+  List<Entry> positiveEntries;
+  List<Entry> negativeEntries;
 
   void init() async {
     allEntries = _local.getEntries();
+    setupPosAndNegLists();
     recentEntries = prepRecent(allEntries);
+
     _local.savedEntries$.listen((list) {
       allEntries = list;
       recentEntries = prepRecent(list);
+      setupPosAndNegLists();
       notifyListeners();
       print(recentEntries[0].text);
     });
     notifyListeners();
+  }
+
+  void setupPosAndNegLists() {
+    positiveEntries = [];
+    negativeEntries = [];
+    for (var entry in allEntries) {
+      if (entry.positivity >= 0) {
+        positiveEntries.add(entry);
+      }
+      if (entry.positivity < 0) {
+        negativeEntries.add(entry);
+      }
+    }
   }
 
   List<Entry> prepRecent(List<Entry> list) {

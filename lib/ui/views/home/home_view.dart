@@ -44,14 +44,18 @@ class HomeView extends StatelessWidget {
                           child: Container(
                             height: 100,
                             width: MediaQuery.of(context).size.width / 2.5,
-                            child: Center(child: Text("50 Pos")),
+                            child: Center(
+                                child: Text(
+                                    "${model.positiveEntries.length} Pos")),
                           ),
                         ),
                         CustomCard(
                           child: Container(
                             height: 100,
                             width: MediaQuery.of(context).size.width / 2.5,
-                            child: Center(child: Text("70 Neg")),
+                            child: Center(
+                                child: Text(
+                                    "${model.negativeEntries.length} Neg")),
                           ),
                         ),
                       ],
