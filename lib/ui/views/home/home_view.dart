@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
                           height: 150,
                           child: Center(
                             child: Text(
-                              "${model.entries.length} entries",
+                              "${model.allEntries.length} entries",
                               style: TextStyle(fontSize: 30),
                             ),
                           ),
@@ -58,9 +58,12 @@ class HomeView extends StatelessWidget {
                     ),
                     Text("Recent"),
                     ColumnBuilder(
-                      itemCount: model.entries.length,
+                      itemCount: model.recentEntries.length,
                       itemBuilder: (context, index) {
-                        return EntryTile(entry: model.entries[index]);
+                        return EntryTile(
+                          entry: model.recentEntries[index],
+                          key: UniqueKey(),
+                        );
                       },
                     )
                   ],

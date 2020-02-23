@@ -10,14 +10,23 @@ class HomeModel extends BaseModel {
   final _nav = locator<NavigationService>();
   final _local = locator<LocalStorageService>();
 
-  List<Entry> entries;
+  List<Entry> recentEntries;
+  List<Entry> allEntries;
 
   void init() async {
-    entries = _local.getEntries();
+    allEntries = _local.getEntries();
+    recentEntries = prepRecent(allEntries);
     _local.savedEntries$.listen((list) {
-      entries = list;
+      allEntries = list;
+      recentEntries = prepRecent(list);
+      notifyListeners();
+      print(recentEntries[0].text);
     });
     notifyListeners();
+  }
+
+  List<Entry> prepRecent(List<Entry> list) {
+    return list.sublist(list.length - 5).reversed.toList();
   }
 
   void hello() {

@@ -35,6 +35,6 @@ class AnalyzeService {
   Future<double> getSentiment(String text) async {
     var data = await _api.checkSentiment(text);
 
-    return data["sentiment"]["document"]["score"];
+    return data["sentiment"]["document"]["score"]?.toDouble() ?? 0;
   }
 }
