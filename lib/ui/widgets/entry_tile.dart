@@ -19,60 +19,85 @@ class EntryTile extends StatelessWidget {
       onModelReady: (model) => model.init(entry, key),
       builder: (context, model, child) => Padding(
         padding: EdgeInsets.only(bottom: 10),
-        child: GestureDetector(
-          onTap: model.viewDetails,
-          child: Container(
-            height: 150,
-            width: double.infinity,
-            child: CustomCard(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Row(
-                      children: <Widget>[
-                        Container(
-                          width: 200,
-                          child: LinearPercentIndicator(
-                            width: 140.0,
-                            lineHeight: 14.0,
-                            percent: (model.entry.positivity + 1) / 2,
-                            backgroundColor: Colors.grey,
-                            progressColor: (model.entry.positivity.isNegative)
-                                ? Colors.red
-                                : (model.entry.positivity > 0.6)
-                                    ? Colors.green
-                                    : Colors.blue,
+        child: Slidable(
+          actionPane: SlidableDrawerActionPane(),
+          child: GestureDetector(
+            onTap: model.viewDetails,
+            child: Container(
+              height: 150,
+              width: double.infinity,
+              child: CustomCard(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            width: 200,
+                            child: LinearPercentIndicator(
+                              width: 140.0,
+                              lineHeight: 14.0,
+                              percent: (model.entry.positivity + 1) / 2,
+                              backgroundColor: Colors.grey,
+                              progressColor: (model.entry.positivity.isNegative)
+                                  ? Colors.red
+                                  : (model.entry.positivity > 0.6)
+                                      ? Colors.green
+                                      : Colors.blue,
+                            ),
                           ),
-                        ),
-                        Spacer(),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      model.entry.text,
-                      overflow: TextOverflow.ellipsis,
-                      // minFontSize: 10,
-                      maxLines: 2,
-                    ),
-                    Spacer(),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          DateFormat("M/d/y").format(entry.date),
-                          style: TextStyle(color: Colors.black54),
-                        ),
-                      ],
-                    ),
-                  ],
+                          Spacer(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        model.entry.text,
+                        overflow: TextOverflow.ellipsis,
+                        // minFontSize: 10,
+                        maxLines: 2,
+                      ),
+                      Spacer(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Text(
+                            DateFormat("M/d/y").format(entry.date),
+                            style: TextStyle(color: Colors.black54),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
+          actions: <Widget>[],
+          secondaryActions: <Widget>[
+            IconSlideAction(
+              color: Colors.transparent,
+              onTap: () {},
+              iconWidget: Container(
+                padding: EdgeInsets.symmetric(horizontal: 4),
+                child: SizedBox(
+                  height: 64,
+                  width: 64,
+                  child: CustomCard(
+                    backgroundColor: Colors.red,
+                    child: Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
+                    // color: kDeleteBookColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

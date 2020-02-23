@@ -1,16 +1,11 @@
-# lean_provider
+# Pozzy
 
-A new Flutter project.
+An app for seeing how positive you are.
 
-## Getting Started
+Use Pozzy like a journal to log your thoughts and feelings and Pozzy will use NLP processing to determine how positive or negative you've been.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- See the positivity of each entry you create
+- View graphs depicting trends in your recent entries
+- Get an overview of how positive you have been overall

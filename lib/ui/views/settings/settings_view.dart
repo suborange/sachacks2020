@@ -27,9 +27,8 @@ class SettingsView extends StatelessWidget {
                   child: Container(
                     child: SfRadialGauge(
                       title: GaugeTitle(
-                          text: 'Average Mood',
-                          textStyle: TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.bold)),
+                          text: 'Overall Positivity',
+                          textStyle: TextStyle(fontSize: 24)),
                       axes: <RadialAxis>[
                         RadialAxis(
                             startAngle: 180,
@@ -41,24 +40,28 @@ class SettingsView extends StatelessWidget {
                             showAxisLine: false,
                             showLabels: false,
                             pointers: <GaugePointer>[
-                              MarkerPointer(
+                              NeedlePointer(
                                   value: model.adjustedAvg,
-                                  markerOffset: -5,
-                                  color: Colors.blue)
+                                  needleLength: 0.95,
+                                  enableAnimation: true,
+                                  animationType: AnimationType.ease,
+                                  needleStartWidth: 1.5,
+                                  needleEndWidth: 10,
+                                  needleColor: Colors.blueGrey,
+                                  knobStyle: KnobStyle(knobRadius: 0.09))
                             ],
                             ranges: <GaugeRange>[
                               GaugeRange(
                                 startValue: 0,
                                 endValue: 100,
-                                color: Colors.red,
                                 startWidth: 50,
                                 endWidth: 50,
                                 gradient: SweepGradient(colors: <Color>[
-                                  Colors.red,
+                                  Colors.redAccent,
                                   Theme.of(context).primaryColor
                                 ], stops: <double>[
-                                  0,
-                                  1
+                                  0.2,
+                                  0.8
                                 ]),
                               ),
                             ])

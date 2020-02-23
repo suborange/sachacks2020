@@ -16,13 +16,13 @@ class EnterFormView extends StatelessWidget {
             ? Center(
                 child: CircularProgressIndicator(),
               )
-            : Column(
+            : ListView(
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextField (
+                    child: TextField(
                       decoration: InputDecoration(
-                        // labelText: "Type here:   ", 
+                        // labelText: "Type here:   ",
                         hintText: "Type your entry here:",
                         //border: InputBorder.none //OutlineInputBorder(borderRadius: BorderRadius.circular(10))
                       ),

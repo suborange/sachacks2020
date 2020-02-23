@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
           locator<ConnectivityService>().connectionStatusController.stream,
       child: NetworkSensitive(
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'The App',
           theme: lightTheme,
           darkTheme: darkTheme,
@@ -35,7 +36,6 @@ class MyApp extends StatelessWidget {
         ),
         altChild: MaterialApp(
           title: 'No Connection',
-          theme: lightTheme,
           darkTheme: darkTheme,
           home: NoNetworkView(),
         ),
