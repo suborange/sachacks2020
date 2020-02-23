@@ -71,6 +71,10 @@ class LocalStorageService {
 
   double getAvgPositivity() {
     double avg = stats.get('avgPositivity') ?? 0;
+    if (avg.isNaN) {
+      avg = 0;
+    }
+    print(avg);
     _avgPositivity.add(avg);
     return avg;
   }
