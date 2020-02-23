@@ -6,6 +6,7 @@ import 'package:lean_provider/ui/widgets/column_builder.dart';
 import 'package:lean_provider/ui/widgets/custom_card.dart';
 import 'package:lean_provider/ui/widgets/entry_tile.dart';
 
+
 class HomeView extends StatelessWidget {
   const HomeView({Key key}) : super(key: key);
 

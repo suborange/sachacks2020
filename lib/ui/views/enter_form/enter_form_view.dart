@@ -20,8 +20,15 @@ class EnterFormView extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: TextField(
+                    child: TextField (
+                      decoration: InputDecoration(
+                        // labelText: "Type here:   ", 
+                        hintText: "Type your entry here:",
+                        //border: InputBorder.none //OutlineInputBorder(borderRadius: BorderRadius.circular(10))
+                      ),
                       controller: model.controller,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
                     ),
                   ),
                   Row(
