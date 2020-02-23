@@ -18,8 +18,8 @@ class TabContainer extends StatelessWidget {
       title: Text("Home"),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      title: Text("Settings"),
+      icon: Icon(Icons.assessment),
+      title: Text("Analysis"),
     ),
   ];
 

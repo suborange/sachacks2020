@@ -25,13 +25,16 @@ class HomeView extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: CustomCard(
-                        child: Container(
-                          height: 150,
-                          child: Center(
-                            child: Text(
-                              "${model.allEntries.length} entries",
-                              style: TextStyle(fontSize: 30),
+                      child: GestureDetector(
+                        onTap: model.viewAllEntries,
+                        child: CustomCard(
+                          child: Container(
+                            height: 150,
+                            child: Center(
+                              child: Text(
+                                "${model.allEntries.length} entries",
+                                style: TextStyle(fontSize: 30),
+                              ),
                             ),
                           ),
                         ),
@@ -40,27 +43,39 @@ class HomeView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
-                        CustomCard(
-                          child: Container(
-                            height: 100,
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            child: Center(
-                                child: Text(
-                                    "${model.positiveEntries.length} Pos")),
+                        GestureDetector(
+                          onTap: model.viewPositiveEntries,
+                          child: CustomCard(
+                            child: Container(
+                              height: 100,
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              child: Center(
+                                  child: Text(
+                                      "${model.positiveEntries.length} Pos")),
+                            ),
                           ),
                         ),
-                        CustomCard(
-                          child: Container(
-                            height: 100,
-                            width: MediaQuery.of(context).size.width / 2.5,
-                            child: Center(
-                                child: Text(
-                                    "${model.negativeEntries.length} Neg")),
+                        GestureDetector(
+                          onTap: model.viewNegativeEntries,
+                          child: CustomCard(
+                            child: Container(
+                              height: 100,
+                              width: MediaQuery.of(context).size.width / 2.5,
+                              child: Center(
+                                  child: Text(
+                                      "${model.negativeEntries.length} Neg")),
+                            ),
                           ),
                         ),
                       ],
                     ),
-                    Text("Recent"),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Text(
+                        "Recent",
+                        style: TextStyle(fontSize: 30),
+                      ),
+                    ),
                     ColumnBuilder(
                       itemCount: model.recentEntries.length,
                       itemBuilder: (context, index) {

@@ -51,6 +51,18 @@ class HomeModel extends BaseModel {
     _nav.pushNamed(ViewRoutes.enterForm);
   }
 
+  void viewAllEntries() {
+    _nav.pushNamed(ViewRoutes.entryList, arguments: allEntries);
+  }
+
+  void viewPositiveEntries() {
+    _nav.pushNamed(ViewRoutes.entryList, arguments: positiveEntries);
+  }
+
+  void viewNegativeEntries() {
+    _nav.pushNamed(ViewRoutes.entryList, arguments: negativeEntries);
+  }
+
   @override
   void dispose() {
     super.dispose();

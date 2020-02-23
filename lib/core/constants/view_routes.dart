@@ -7,4 +7,5 @@ class ViewRoutes {
   static const home = 'home';
   static const settings = 'settings';
   static const enterForm = 'enterForm';
+  static const entryList = 'entryList';
 }
