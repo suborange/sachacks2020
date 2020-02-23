@@ -58,10 +58,12 @@ class SettingsView extends StatelessWidget {
                                 endWidth: 50,
                                 gradient: SweepGradient(colors: <Color>[
                                   Colors.redAccent,
-                                  Theme.of(context).primaryColor
+                                  Theme.of(context).primaryColor,
+                                  Colors.green
                                 ], stops: <double>[
-                                  0.2,
-                                  0.8
+                                  0.0,
+                                  0.5,
+                                  1.0
                                 ]),
                               ),
                             ])
