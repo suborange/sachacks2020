@@ -11,6 +11,9 @@ class LocalStorageService {
   final _entries = BehaviorSubject<List<Entry>>();
   Stream<List<Entry>> get savedEntries$ => _entries.stream;
 
+  final _avgPositivity = BehaviorSubject<double>();
+  Stream<double> get avgPositivity$ => _avgPositivity.stream;
+
   Future<void> init() async {
     await Hive.initFlutter();
     Hive.registerAdapter(EntryAdapter());
@@ -35,10 +38,13 @@ class LocalStorageService {
     var avgPositivity = totalPositivity / numEntries;
     stats.put('numberOfEntries', numEntries);
     stats.put('avgPositivity', avgPositivity);
+    getAvgPositivity();
   }
 
   double getAvgPositivity() {
-    return stats.get('avgPositivity') ?? 0;
+    double avg = stats.get('avgPositivity') ?? 0;
+    _avgPositivity.add(avg);
+    return avg;
   }
 
   int getNumberOfEntries() {

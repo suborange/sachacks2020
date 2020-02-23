@@ -18,38 +18,52 @@ class SettingsView extends StatelessWidget {
       builder: (context, model, child) => Scaffold(
           body: Column(
         children: <Widget>[
-          Container(
-            child: SfRadialGauge(
-              title: GaugeTitle(
-                  text: 'Average Mood',
-                  textStyle:
-                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-              axes: <RadialAxis>[
-                RadialAxis(
-                    minimum: 0,
-                    maximum: 100,
-                    showTicks: false,
-                    showAxisLine: false,
-                    showLabels: false,
-                    pointers: <GaugePointer>[
-                      MarkerPointer(
-                          value: model.adjustedAvg,
-                          markerOffset: -5,
-                          color: Colors.blue)
-                    ],
-                    ranges: <GaugeRange>[
-                      GaugeRange(
-                        startValue: 18,
-                        endValue: 82,
-                        color: Colors.red,
-                        startWidth: 22,
-                        endWidth: 22,
-                        gradient: SweepGradient(
-                            colors: const <Color>[Colors.red, Colors.blue],
-                            stops: const <double>[0, 1]),
-                      ),
-                    ])
-              ],
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Align(
+              alignment: Alignment.topCenter,
+              heightFactor: 0.5,
+              child: Container(
+                child: SfRadialGauge(
+                  title: GaugeTitle(
+                      text: 'Average Mood',
+                      textStyle:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                  axes: <RadialAxis>[
+                    RadialAxis(
+                        startAngle: 180,
+                        endAngle: 0,
+                        minimum: 0,
+                        maximum: 100,
+                        interval: 10,
+                        showTicks: false,
+                        showAxisLine: false,
+                        showLabels: false,
+                        pointers: <GaugePointer>[
+                          MarkerPointer(
+                              value: model.adjustedAvg,
+                              markerOffset: -5,
+                              color: Colors.blue)
+                        ],
+                        ranges: <GaugeRange>[
+                          GaugeRange(
+                            startValue: 0,
+                            endValue: 100,
+                            color: Colors.red,
+                            startWidth: 50,
+                            endWidth: 50,
+                            gradient: SweepGradient(colors: <Color>[
+                              Colors.red,
+                              Theme.of(context).primaryColor
+                            ], stops: <double>[
+                              0,
+                              1
+                            ]),
+                          ),
+                        ])
+                  ],
+                ),
+              ),
             ),
           ),
           Padding(

@@ -7,11 +7,15 @@ class SettingsModel extends BaseModel {
   double avgPositivity = 0;
 
   double get adjustedAvg {
-    return ((avgPositivity + 1) / 2) * 82;
+    return ((avgPositivity + 1) / 2) * 100;
   }
 
   void init() async {
     avgPositivity = _local.getAvgPositivity();
+    _local.avgPositivity$.listen((value) {
+      avgPositivity = value;
+      notifyListeners();
+    });
     print("the avg: $avgPositivity");
   }
 
