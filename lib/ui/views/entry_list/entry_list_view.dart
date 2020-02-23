@@ -23,9 +23,16 @@ class EntryListView extends StatelessWidget {
                 : ListView.builder(
                     itemCount: model.entries.length,
                     itemBuilder: (context, index) {
-                      return EntryTile(
-                        entry: model.entries[index],
-                        key: UniqueKey(),
+                      return Padding(
+                        padding: const EdgeInsets.only(
+                          top: 8.0,
+                          left: 16,
+                          right: 16,
+                        ),
+                        child: EntryTile(
+                          entry: model.entries[index],
+                          key: UniqueKey(),
+                        ),
                       );
                     },
                   )),
