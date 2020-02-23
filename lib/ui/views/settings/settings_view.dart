@@ -16,7 +16,8 @@ class SettingsView extends StatelessWidget {
           body: ListView(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
             child: CustomCard(
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -95,6 +96,7 @@ class SettingsView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Sparkline(
+                        lineColor: Colors.grey,
                         data: model.sevenData,
                       ),
                     ),
@@ -130,6 +132,7 @@ class SettingsView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Sparkline(
+                        lineColor: Colors.grey,
                         data: model.thirtyData,
                       ),
                     ),
