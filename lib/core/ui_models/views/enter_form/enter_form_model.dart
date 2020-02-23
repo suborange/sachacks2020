@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lean_provider/core/enums/view_state.dart';
 import 'package:lean_provider/core/model/entry.dart';
 import 'package:lean_provider/core/services/api_service.dart';
 import 'package:lean_provider/core/services/local_storage_service.dart';
@@ -20,10 +21,14 @@ class EnterFormModel extends BaseModel {
     _nav.pop();
   }
 
-  void done() {
+  void done() async {
     String text = controller.text;
 
-    _api.analyze(text);
+    // TODO: ANALYZE THE TEXT AND ASSIGN IT TO THE POSITIVITY
+    setState(ViewState.Busy);
+    await _api.analyze(text);
+    setState(ViewState.Idle);
+
     DateTime date = DateTime.now();
     double positivity = 0;
     _local.addEntry(Entry(text: text, date: date, positivity: positivity));
