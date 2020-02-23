@@ -27,7 +27,7 @@ class EnterFormModel extends BaseModel {
 
     // TODO: ANALYZE THE TEXT AND ASSIGN IT TO THE POSITIVITY
     setState(ViewState.Busy);
-    double positivity = await _analyze.getPositivity(text) ?? 0;
+    double positivity = await _analyze.getSentiment(text) ?? 0;
     setState(ViewState.Idle);
     print("The Positivity is: $positivity");
 

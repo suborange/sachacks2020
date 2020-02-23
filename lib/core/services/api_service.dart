@@ -18,4 +18,17 @@ class ApiService {
 
     return result;
   }
+
+  Future<Map<dynamic, dynamic>> checkSentiment(String text) async {
+    Map<String, dynamic> data = {"text": text, "features": "sentiment"};
+    Map<dynamic, dynamic> result;
+    try {
+      result = await httpService.getHttp("/v1/analyze", data);
+    } catch (e) {
+      print(e);
+    }
+
+    print(result);
+    return result;
+  }
 }

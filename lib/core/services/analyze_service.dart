@@ -18,7 +18,7 @@ class AnalyzeService {
           positivity += tone["score"];
           break;
         case "confident":
-          positivity += tone["score"];
+          positivity += tone["score"] / 4;
           break;
         case "anger":
           positivity -= tone["score"];
@@ -30,5 +30,11 @@ class AnalyzeService {
       }
     }
     return positivity;
+  }
+
+  Future<double> getSentiment(String text) async {
+    var data = await _api.checkSentiment(text);
+
+    return data["sentiment"]["document"]["score"];
   }
 }

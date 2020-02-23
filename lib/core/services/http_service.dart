@@ -7,7 +7,8 @@ import 'package:lean_provider/core/constants/api_key.dart';
 class HttpService {
   Dio _dio = Dio();
   final baseUrl =
-      'https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/c2f43c14-b067-40af-bb1c-5a5d768846ce';
+      "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/8469c279-cac9-474a-8d1b-3842417a9bf0";
+  // 'https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/c2f43c14-b067-40af-bb1c-5a5d768846ce';
 
   void init() {
     _dio.options.baseUrl = baseUrl;
@@ -33,7 +34,7 @@ class HttpService {
 
   Options getAuthOptions() {
     String username = ApiKey.username;
-    String password = ApiKey.key;
+    String password = ApiKey.sentimentApiKey;
     String basicAuth = "Basic " +
         convert.base64Encode(convert.utf8.encode('$username:$password'));
     return Options(headers: <String, String>{'authorization': basicAuth});
