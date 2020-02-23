@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:lean_provider/core/services/api_service.dart';
 import 'package:lean_provider/core/services/connectivity_service.dart';
+import 'package:lean_provider/core/services/http_service.dart';
 import 'package:lean_provider/core/services/local_storage_service.dart';
 import 'package:lean_provider/core/services/navigation_service.dart';
 import 'package:lean_provider/core/ui_models/tab_model.dart';
@@ -24,6 +26,8 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => NavigationService());
   locator.registerLazySingleton(() => ConnectivityService());
   locator.registerLazySingleton(() => LocalStorageService());
+  locator.registerLazySingleton(() => ApiService());
+  locator.registerLazySingleton(() => HttpService());
 
   await initializeServices();
 }
@@ -31,4 +35,5 @@ Future<void> setupLocator() async {
 Future<void> initializeServices() async {
   await locator<ConnectivityService>().init();
   locator<LocalStorageService>().init();
+  locator<HttpService>().init();
 }
