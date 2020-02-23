@@ -6,6 +6,7 @@ import 'package:lean_provider/core/model/entry.dart';
 import 'package:lean_provider/core/ui_models/entry_tile_model.dart';
 import 'package:lean_provider/ui/views/base_view.dart';
 import 'package:lean_provider/ui/widgets/custom_card.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class EntryTile extends StatelessWidget {
   final Entry entry;
@@ -18,8 +19,8 @@ class EntryTile extends StatelessWidget {
       onModelReady: (model) => model.init(entry, key),
       builder: (context, model, child) => Padding(
         padding: EdgeInsets.only(bottom: 10),
-        child: Slidable(
-          actionPane: SlidableDrawerActionPane(),
+        child: GestureDetector(
+          onTap: model.viewDetails,
           child: Container(
             height: 150,
             width: double.infinity,
@@ -33,14 +34,16 @@ class EntryTile extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           width: 200,
-                          child: AutoSizeText(
-                            model.entry.positivity.toString(),
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600),
-                            maxLines: 1,
-                            minFontSize: 10,
+                          child: LinearPercentIndicator(
+                            width: 140.0,
+                            lineHeight: 14.0,
+                            percent: (model.entry.positivity + 1) / 2,
+                            backgroundColor: Colors.grey,
+                            progressColor: (model.entry.positivity.isNegative)
+                                ? Colors.red
+                                : (model.entry.positivity > 0.6)
+                                    ? Colors.green
+                                    : Colors.blue,
                           ),
                         ),
                         Spacer(),
@@ -49,11 +52,11 @@ class EntryTile extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    AutoSizeText(
+                    Text(
                       model.entry.text,
                       overflow: TextOverflow.ellipsis,
-                      minFontSize: 10,
-                      maxLines: 3,
+                      // minFontSize: 10,
+                      maxLines: 2,
                     ),
                     Spacer(),
                     Row(
@@ -70,27 +73,6 @@ class EntryTile extends StatelessWidget {
               ),
             ),
           ),
-          actions: <Widget>[],
-          secondaryActions: <Widget>[
-            IconSlideAction(
-              color: Colors.transparent,
-              iconWidget: Container(
-                padding: EdgeInsets.symmetric(horizontal: 4),
-                child: SizedBox(
-                  height: 64,
-                  width: 64,
-                  child: CustomCard(
-                    backgroundColor: Colors.red,
-                    child: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    ),
-                    // color: kDeleteBookColor,
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

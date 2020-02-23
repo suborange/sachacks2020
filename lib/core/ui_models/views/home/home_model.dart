@@ -10,18 +10,57 @@ class HomeModel extends BaseModel {
   final _nav = locator<NavigationService>();
   final _local = locator<LocalStorageService>();
 
-  List<Entry> entries;
+  List<Entry> recentEntries;
+  List<Entry> allEntries;
+  List<Entry> positiveEntries;
+  List<Entry> negativeEntries;
 
   void init() async {
-    entries = _local.getEntries();
+    allEntries = _local.getEntries();
+    setupPosAndNegLists();
+    recentEntries = prepRecent(allEntries);
+
     _local.savedEntries$.listen((list) {
-      entries = list;
+      allEntries = list;
+      recentEntries = prepRecent(list);
+      setupPosAndNegLists();
+      notifyListeners();
+      print(recentEntries[0].text);
     });
     notifyListeners();
   }
 
+  void setupPosAndNegLists() {
+    positiveEntries = [];
+    negativeEntries = [];
+    for (var entry in allEntries) {
+      if (entry.positivity >= 0) {
+        positiveEntries.add(entry);
+      }
+      if (entry.positivity < 0) {
+        negativeEntries.add(entry);
+      }
+    }
+  }
+
+  List<Entry> prepRecent(List<Entry> list) {
+    return list.sublist(list.length - 5).reversed.toList();
+  }
+
   void hello() {
     _nav.pushNamed(ViewRoutes.enterForm);
+  }
+
+  void viewAllEntries() {
+    _nav.pushNamed(ViewRoutes.entryList, arguments: allEntries);
+  }
+
+  void viewPositiveEntries() {
+    _nav.pushNamed(ViewRoutes.entryList, arguments: positiveEntries);
+  }
+
+  void viewNegativeEntries() {
+    _nav.pushNamed(ViewRoutes.entryList, arguments: negativeEntries);
   }
 
   @override
