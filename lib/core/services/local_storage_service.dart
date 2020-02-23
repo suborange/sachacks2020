@@ -6,6 +6,7 @@ import 'package:rxdart/subjects.dart';
 class LocalStorageService {
   Box entries;
   Box userData;
+  Box stats;
 
   final _entries = BehaviorSubject<List<Entry>>();
   Stream<List<Entry>> get savedEntries$ => _entries.stream;
@@ -15,12 +16,33 @@ class LocalStorageService {
     Hive.registerAdapter(EntryAdapter());
     entries = await Hive.openBox('entries');
     userData = await Hive.openBox('userData');
+    stats = await Hive.openBox('stats');
   }
 
-  void addEntry(Entry solution) {
+  void addEntry(Entry entry) {
     List<Entry> entryList = getEntries();
-    entryList.add(solution);
+    entryList.add(entry);
     entries.put('list', entryList);
+    addStats(entry);
+  }
+
+  void addStats(Entry entry) {
+    int numEntries = getNumberOfEntries();
+
+    double totalPositivity = getAvgPositivity() * numEntries;
+    totalPositivity = totalPositivity + entry.positivity;
+    numEntries += 1;
+    var avgPositivity = totalPositivity / numEntries;
+    stats.put('numberOfEntries', numEntries);
+    stats.put('avgPositivity', avgPositivity);
+  }
+
+  double getAvgPositivity() {
+    return stats.get('avgPositivity') ?? 0;
+  }
+
+  int getNumberOfEntries() {
+    return stats.get('numberOfEntries') ?? 0;
   }
 
   List<Entry> getEntries() {

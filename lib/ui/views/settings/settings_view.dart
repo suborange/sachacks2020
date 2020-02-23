@@ -16,50 +16,68 @@ class SettingsView extends StatelessWidget {
     return BaseView<SettingsModel>(
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
-        body: Column(
-          children: <Widget>[
-            Container(child: SfRadialGauge(
-              title: GaugeTitle(text: 'Average Mood', textStyle: TextStyle(
-                fontSize: 15, fontWeight: FontWeight.bold)
-                 ), 
-                 axes: <RadialAxis>[
-                   RadialAxis(
-                     showTicks: false, showAxisLine: false, showLabels: false,
-                     pointers: <GaugePointer> [MarkerPointer(value: 50, markerOffset: -5)],
-                     ranges: <GaugeRange>[
-                       GaugeRange(startValue: 18,endValue: 38,color: Colors.red ,startWidth: 22,endWidth:22), 
-                       GaugeRange(startValue: 38,endValue: 60,color: Colors.orange,startWidth: 22,endWidth:22), 
-                       GaugeRange(startValue: 60,endValue: 82,color: Colors.green,startWidth: 22,endWidth:22), 
-                     ]
-                   )
-                 ],
-            ), 
-            height: 200, ),
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: CustomCard(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
-                  child: Sparkline(
+          body: Column(
+        children: <Widget>[
+          Container(
+            child: SfRadialGauge(
+              title: GaugeTitle(
+                  text: 'Average Mood',
+                  textStyle:
+                      TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              axes: <RadialAxis>[
+                RadialAxis(
+                    minimum: 0,
+                    maximum: 100,
+                    showTicks: false,
+                    showAxisLine: false,
+                    showLabels: false,
+                    pointers: <GaugePointer>[
+                      MarkerPointer(
+                          value: model.adjustedAvg,
+                          markerOffset: -5,
+                          color: Colors.blue)
+                    ],
+                    ranges: <GaugeRange>[
+                      GaugeRange(
+                        startValue: 18,
+                        endValue: 82,
+                        color: Colors.red,
+                        startWidth: 22,
+                        endWidth: 22,
+                        gradient: SweepGradient(
+                            colors: const <Color>[Colors.red, Colors.blue],
+                            stops: const <double>[0, 1]),
+                      ),
+                    ])
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: CustomCard(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
+                child: Sparkline(
                   data: data7,
-                  ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: CustomCard(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
-                  child: Sparkline(
+          ),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: CustomCard(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
+                child: Sparkline(
                   data: data30,
-                  ),
                 ),
               ),
             ),
-          ],
-        )
-      ),
+          ),
+        ],
+      )),
     );
   }
 }
