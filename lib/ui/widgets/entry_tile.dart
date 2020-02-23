@@ -33,14 +33,13 @@ class EntryTile extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           width: 200,
-                          child: AutoSizeText(
+                          child: Text(
                             model.entry.positivity.toString(),
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w600),
                             maxLines: 1,
-                            minFontSize: 10,
                           ),
                         ),
                         Spacer(),
@@ -52,8 +51,8 @@ class EntryTile extends StatelessWidget {
                     AutoSizeText(
                       model.entry.text,
                       overflow: TextOverflow.ellipsis,
-                      minFontSize: 10,
-                      maxLines: 3,
+                      // minFontSize: 10,
+                      maxLines: 2,
                     ),
                     Spacer(),
                     Row(
