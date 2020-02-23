@@ -24,39 +24,44 @@ class EntryDetailView extends StatelessWidget {
             DateFormat("M/d/y").format(entry.date),
           ),
         ),
-        body: Padding(
-          padding: EdgeInsets.only(bottom: 10),
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    LinearPercentIndicator(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      lineHeight: 14.0,
-                      percent: (model.entry.positivity + 1) / 2,
-                      backgroundColor: Colors.grey,
-                      progressColor: (model.entry.positivity.isNegative)
-                          ? Colors.red
-                          : (model.entry.positivity > 0.6)
-                              ? Colors.green
-                              : Colors.blue,
-                    ),
-                    Spacer(),
-                  ],
+        body: ListView(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: CustomCard(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          LinearPercentIndicator(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            lineHeight: 14.0,
+                            percent: (model.entry.positivity + 1) / 2,
+                            backgroundColor: Colors.grey,
+                            progressColor: (model.entry.positivity.isNegative)
+                                ? Colors.red
+                                : (model.entry.positivity > 0.6)
+                                    ? Colors.green
+                                    : Colors.blue,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Text(
+                        model.entry.text,
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  model.entry.text,
-                ),
-                Spacer(),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
