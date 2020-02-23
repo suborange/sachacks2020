@@ -11,8 +11,6 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var data7 = [0.0, 1.0, 1.5, 2.0, 0.0, 0.0, -0.5, -1.0, -0.5, 0.0, 0.0];
-    var data30 = [0.0, 0.8, 1.1, 1.0, 0.0, 0.4, -0.7, -2.0, -0.3, 0.0, 0.0];
     return BaseView<SettingsModel>(
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Scaffold(
@@ -73,7 +71,7 @@ class SettingsView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
                 child: Sparkline(
-                  data: data7,
+                  data: model.sevenData,
                 ),
               ),
             ),
@@ -85,7 +83,7 @@ class SettingsView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15.0, vertical: 6.0),
                 child: Sparkline(
-                  data: data30,
+                  data: model.thirtyData,
                 ),
               ),
             ),

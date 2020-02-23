@@ -14,12 +14,21 @@ class LocalStorageService {
   final _avgPositivity = BehaviorSubject<double>();
   Stream<double> get avgPositivity$ => _avgPositivity.stream;
 
+  final _seven = BehaviorSubject<List<double>>();
+  Stream<List<double>> get sevenData$ => _seven.stream;
+
+  final _thirty = BehaviorSubject<List<double>>();
+  Stream<List<double>> get thirtyData$ => _thirty.stream;
+
   Future<void> init() async {
     await Hive.initFlutter();
     Hive.registerAdapter(EntryAdapter());
     entries = await Hive.openBox('entries');
     userData = await Hive.openBox('userData');
     stats = await Hive.openBox('stats');
+
+    getValuesForPastEntries(7);
+    getValuesForPastEntries(30);
   }
 
   void addEntry(Entry entry) {
@@ -39,12 +48,31 @@ class LocalStorageService {
     stats.put('numberOfEntries', numEntries);
     stats.put('avgPositivity', avgPositivity);
     getAvgPositivity();
+    getValuesForPastEntries(7);
+    getValuesForPastEntries(30);
   }
 
   double getAvgPositivity() {
     double avg = stats.get('avgPositivity') ?? 0;
     _avgPositivity.add(avg);
     return avg;
+  }
+
+  List<double> getValuesForPastEntries(int numberOfEntries) {
+    List<Entry> entries = getEntries();
+    if (entries.length > numberOfEntries) {
+      entries = entries.sublist(entries.length - numberOfEntries);
+    } else {
+      entries = entries;
+    }
+
+    List<double> data = entries.map((entry) => entry.positivity).toList();
+    if (numberOfEntries == 7) {
+      _seven.add(data);
+    } else {
+      _thirty.add(data);
+    }
+    return data;
   }
 
   int getNumberOfEntries() {
