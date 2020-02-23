@@ -6,6 +6,7 @@ import 'package:lean_provider/core/model/entry.dart';
 import 'package:lean_provider/core/ui_models/entry_tile_model.dart';
 import 'package:lean_provider/ui/views/base_view.dart';
 import 'package:lean_provider/ui/widgets/custom_card.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class EntryTile extends StatelessWidget {
   final Entry entry;
@@ -33,13 +34,16 @@ class EntryTile extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           width: 200,
-                          child: Text(
-                            model.entry.positivity.toString(),
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w600),
-                            maxLines: 1,
+                          child: LinearPercentIndicator(
+                            width: 140.0,
+                            lineHeight: 14.0,
+                            percent: (model.entry.positivity + 1) / 2,
+                            backgroundColor: Colors.grey,
+                            progressColor: (model.entry.positivity.isNegative)
+                                ? Colors.red
+                                : (model.entry.positivity > 0.6)
+                                    ? Colors.green
+                                    : Colors.blue,
                           ),
                         ),
                         Spacer(),
@@ -48,7 +52,7 @@ class EntryTile extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    AutoSizeText(
+                    Text(
                       model.entry.text,
                       overflow: TextOverflow.ellipsis,
                       // minFontSize: 10,
