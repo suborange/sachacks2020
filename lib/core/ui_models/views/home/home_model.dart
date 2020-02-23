@@ -44,6 +44,7 @@ class HomeModel extends BaseModel {
   }
 
   List<Entry> prepRecent(List<Entry> list) {
+    if (list.length < 5) return list;
     return list.sublist(list.length - 5).reversed.toList();
   }
 
