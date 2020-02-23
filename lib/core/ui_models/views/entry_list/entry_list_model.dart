@@ -1,3 +1,4 @@
+import 'package:lean_provider/core/constants/view_routes.dart';
 import 'package:lean_provider/core/model/entry.dart';
 import 'package:lean_provider/core/services/local_storage_service.dart';
 import 'package:lean_provider/core/ui_models/base_model.dart';

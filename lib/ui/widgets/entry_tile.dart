@@ -19,8 +19,8 @@ class EntryTile extends StatelessWidget {
       onModelReady: (model) => model.init(entry, key),
       builder: (context, model, child) => Padding(
         padding: EdgeInsets.only(bottom: 10),
-        child: Slidable(
-          actionPane: SlidableDrawerActionPane(),
+        child: GestureDetector(
+          onTap: model.viewDetails,
           child: Container(
             height: 150,
             width: double.infinity,
@@ -73,27 +73,6 @@ class EntryTile extends StatelessWidget {
               ),
             ),
           ),
-          actions: <Widget>[],
-          secondaryActions: <Widget>[
-            IconSlideAction(
-              color: Colors.transparent,
-              iconWidget: Container(
-                padding: EdgeInsets.symmetric(horizontal: 4),
-                child: SizedBox(
-                  height: 64,
-                  width: 64,
-                  child: CustomCard(
-                    backgroundColor: Colors.red,
-                    child: Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    ),
-                    // color: kDeleteBookColor,
-                  ),
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

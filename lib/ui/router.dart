@@ -3,6 +3,7 @@ import 'package:lean_provider/core/constants/view_routes.dart';
 import 'package:lean_provider/core/enums/view.dart';
 import 'package:lean_provider/core/model/entry.dart';
 import 'package:lean_provider/ui/views/enter_form/enter_form_view.dart';
+import 'package:lean_provider/ui/views/entry_detail/entry_detail_view.dart';
 import 'package:lean_provider/ui/views/entry_list/entry_list_view.dart';
 import 'package:lean_provider/ui/views/home/home_view.dart';
 import 'package:lean_provider/ui/views/tab_container.dart';
@@ -22,7 +23,9 @@ class Router {
 
       case ViewRoutes.enterForm:
         return EnterFormView();
-
+      case ViewRoutes.entryDetail:
+        final entry = settings.arguments as Entry;
+        return EntryDetailView(entry: entry);
       case ViewRoutes.entryList:
         final list = settings.arguments as List<Entry>;
         return EntryListView(
