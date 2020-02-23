@@ -20,22 +20,24 @@ class EntryListView extends StatelessWidget {
         body: Center(
             child: (model.state == ViewState.Busy)
                 ? Container()
-                : ListView.builder(
-                    itemCount: model.entries.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(
-                          top: 8.0,
-                          left: 16,
-                          right: 16,
-                        ),
-                        child: EntryTile(
-                          entry: model.entries[index],
-                          key: UniqueKey(),
-                        ),
-                      );
-                    },
-                  )),
+                : (model.entries.length == 0)
+                    ? Center(child: Text("No entries"))
+                    : ListView.builder(
+                        itemCount: model.entries.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                              left: 16,
+                              right: 16,
+                            ),
+                            child: EntryTile(
+                              entry: model.entries[index],
+                              key: UniqueKey(),
+                            ),
+                          );
+                        },
+                      )),
       ),
     );
   }
