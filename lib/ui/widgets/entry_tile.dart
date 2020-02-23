@@ -80,7 +80,7 @@ class EntryTile extends StatelessWidget {
           secondaryActions: <Widget>[
             IconSlideAction(
               color: Colors.transparent,
-              onTap: () {},
+              onTap: model.delete,
               iconWidget: Container(
                 padding: EdgeInsets.symmetric(horizontal: 4),
                 child: SizedBox(

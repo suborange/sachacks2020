@@ -52,6 +52,23 @@ class LocalStorageService {
     getValuesForPastEntries(30);
   }
 
+  void deleteEntry(Entry entry) {
+    var entryList = getEntries();
+    entryList.remove(entry);
+    entries.put('list', entryList);
+    int numEntries = getNumberOfEntries();
+    double avgPos = getAvgPositivity();
+    double totalPos = avgPos * numEntries;
+    totalPos -= entry.positivity;
+    numEntries -= 1;
+    avgPos = totalPos / numEntries;
+    stats.put('numberOfEntries', numEntries);
+    stats.put('avgPositivity', avgPos);
+    getAvgPositivity();
+    getValuesForPastEntries(7);
+    getValuesForPastEntries(30);
+  }
+
   double getAvgPositivity() {
     double avg = stats.get('avgPositivity') ?? 0;
     _avgPositivity.add(avg);
