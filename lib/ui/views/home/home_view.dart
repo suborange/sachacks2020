@@ -4,6 +4,7 @@ import 'package:lean_provider/core/ui_models/views/home/home_model.dart';
 import 'package:lean_provider/ui/views/base_view.dart';
 import 'package:lean_provider/ui/widgets/column_builder.dart';
 import 'package:lean_provider/ui/widgets/custom_card.dart';
+import 'package:lean_provider/ui/widgets/entry_tile.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key key}) : super(key: key);
@@ -59,7 +60,7 @@ class HomeView extends StatelessWidget {
                     ColumnBuilder(
                       itemCount: model.entries.length,
                       itemBuilder: (context, index) {
-                        return Text(model.entries[index].text);
+                        return EntryTile(entry: model.entries[index]);
                       },
                     )
                   ],

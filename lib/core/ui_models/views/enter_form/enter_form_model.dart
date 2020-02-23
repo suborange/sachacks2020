@@ -29,6 +29,7 @@ class EnterFormModel extends BaseModel {
     setState(ViewState.Busy);
     double positivity = await _analyze.getPositivity(text) ?? 0;
     setState(ViewState.Idle);
+    print("The Positivity is: $positivity");
 
     DateTime date = DateTime.now();
     _local.addEntry(Entry(text: text, date: date, positivity: positivity));

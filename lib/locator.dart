@@ -5,6 +5,7 @@ import 'package:lean_provider/core/services/connectivity_service.dart';
 import 'package:lean_provider/core/services/http_service.dart';
 import 'package:lean_provider/core/services/local_storage_service.dart';
 import 'package:lean_provider/core/services/navigation_service.dart';
+import 'package:lean_provider/core/ui_models/entry_tile_model.dart';
 import 'package:lean_provider/core/ui_models/tab_model.dart';
 import 'package:lean_provider/core/ui_models/views/enter_form/enter_form_model.dart';
 import 'package:lean_provider/core/ui_models/views/home/home_model.dart';
@@ -22,6 +23,7 @@ Future<void> setupLocator() async {
   locator.registerFactory(() => SettingsModel());
   locator.registerFactory(() => TabModel());
   locator.registerFactory(() => EnterFormModel());
+  locator.registerFactory(() => EntryTileModel());
 
   // Services
   locator.registerLazySingleton(() => NavigationService());

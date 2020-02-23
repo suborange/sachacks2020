@@ -7,6 +7,7 @@ class AnalyzeService {
   Future<double> getPositivity(String text) async {
     var data = await _api.analyze(text);
     var tones = data["document_tone"]["tones"];
+    print(tones);
     double positivity = 0;
     for (var tone in tones) {
       switch (tone["tone_id"]) {
@@ -28,9 +29,6 @@ class AnalyzeService {
         default:
       }
     }
-    positivity /= tones.length;
-    print(positivity);
-    print(tones);
     return positivity;
   }
 }
