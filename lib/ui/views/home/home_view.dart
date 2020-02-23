@@ -119,18 +119,20 @@ class HomeView extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: ColumnBuilder(
-                        itemCount: model.recentEntries.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: EntryTile(
-                              entry: model.recentEntries[index],
-                              key: UniqueKey(),
+                      child: (model.recentEntries.length == 0)
+                          ? Center(child: Text("No recent entries"))
+                          : ColumnBuilder(
+                              itemCount: model.recentEntries.length,
+                              itemBuilder: (context, index) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8.0),
+                                  child: EntryTile(
+                                    entry: model.recentEntries[index],
+                                    key: UniqueKey(),
+                                  ),
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
                     )
                   ],
                 ),
